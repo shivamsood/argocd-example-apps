@@ -83,7 +83,7 @@ spec:
       values: |
         pushgateway:
           enabled: false
-    repoURL: https://prometheus-community.github.io/helm-char
+    repoURL: https://prometheus-community.github.io/helm-charts
     targetRevision: 13.0.2
   syncPolicy:
     automated:
