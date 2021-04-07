@@ -1,3 +1,4 @@
+---
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -20,7 +21,6 @@ spec:
   backoffLimit: 2
 
 ---
-
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
