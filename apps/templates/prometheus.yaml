@@ -14,36 +14,14 @@
 #   service.teams: |
 #     recipientUrls: 
 #       channelName: $channel-teams-url
---- 
+
 apiVersion: batch/v1
 kind: Job
-metadata: 
-  annotations: 
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/hook-delete-policy: HookSucceeded
-  name: before
-spec:
-  template:
-    spec:
-      containers:
-      - name: msteams-notification
-        image: dgkanatsios/o365-notify
-        env:
-           - name: O365_WEBHOOK
-             value: "https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/0ef8db7a0272491ba415c9537b35ff17/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a"
-           - name: O365_MESSAGE
-             value: "Pre sync {{.app.status.sync.status}}"
-      restartPolicy: Never
-  backoffLimit: 2
-  
---- 
-apiVersion: batch/v1
-kind: Job
-metadata: 
-  annotations: 
+metadata:
+  name: after
+  annotations:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
-  name: before
 spec:
   template:
     spec:
@@ -52,13 +30,14 @@ spec:
         image: dgkanatsios/o365-notify
         env:
            - name: O365_WEBHOOK
-             value: "https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/0ef8db7a0272491ba415c9537b35ff17/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a"
+             value: "https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a"
            - name: O365_MESSAGE
-             value: "Post sync {{.app.status.sync.status}}"
+             value: "Post Sync notification"
       restartPolicy: Never
-  backoffLimit: 2  
+  backoffLimit: 2
 
 ---
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -66,12 +45,10 @@ metadata:
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
-#   annotations:
-#     notifications.argoproj.io/subscribe.on-sync-succeeded.teams: channelName
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: default
   project: default
   source:
     chart: prometheus
@@ -84,4 +61,4 @@ spec:
   syncPolicy:
     automated:
       prune: true
-      allowEmpty: true
+      selfHeal: true
