@@ -30,7 +30,7 @@ spec:
         image: dgkanatsios/o365-notify
         env:
            - name: O365_WEBHOOK
-             value: "https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a"
+             value: "https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/b5b75c5096d3410384731fbd7764f375/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a"
            - name: O365_MESSAGE
              value: "Pre Sync notification"
       restartPolicy: Never
@@ -52,7 +52,7 @@ spec:
         image: dgkanatsios/o365-notify
         env:
            - name: O365_WEBHOOK
-             value: "https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a"
+             value: "https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/b5b75c5096d3410384731fbd7764f375/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a"
            - name: O365_MESSAGE
              value: "Post Sync notification"
       restartPolicy: Never
