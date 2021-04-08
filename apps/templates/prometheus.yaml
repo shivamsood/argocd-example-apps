@@ -27,12 +27,48 @@ spec:
     spec:
       containers:
       - name: msteams-notification
-        image: dgkanatsios/o365-notify
-        env:
-           - name: O365_WEBHOOK
-             value: "https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a"
-           - name: O365_MESSAGE
-             value: "Sync Failure notification"
+	    image: plugins/webhook
+	    settings:
+	      urls: https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a
+	      content_type: application/json
+	      template: |
+	        {
+	           "summary":"Deployment",
+	           "sections":[
+	              {
+	                "activityTitle":"<b>Deployment - [ stg ][ {{ build.status }} ]</b>",
+	                "activitySubtitle": "Deployment for {{ repo.name }} - #{{ build.number }}",
+	                "activityImage": "https://github.com/drone/brand/raw/master/logos/png/dark/drone-logo-png-dark-1024.png"
+	              },
+	              {
+	                 "title":"Details:",
+	                 "facts":[
+	                    {
+	                      "name":"Repo",
+	                      "value":"{{ repo.name }}"
+	                    },
+	                    {
+	                      "name":"Status",
+	                      "value":"{{ build.status }}"
+	                    },
+	                    {
+	                      "name":"By",
+	                      "value":"{{ lowercase build.author }}"
+	                    }
+	                 ]
+	              }
+	           ],
+	           "potentialAction":[
+	              {
+	                 "@context":"http://schema.org",
+	                 "@type":"ViewAction",
+	                 "name":"View in Drone",
+	                 "target":[
+	                    "{{ build.link }}"
+	                 ]
+	              }
+	           ]
+	        }
       restartPolicy: Never
   backoffLimit: 2
 ---
