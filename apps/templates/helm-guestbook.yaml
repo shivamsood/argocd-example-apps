@@ -46,7 +46,7 @@ data:
                 "targets": [
                   {
                     "os": "default",
-                    "uri": "{{.context.argocdUrl}}/applications/seven?operation=true"
+                    "uri": "eight/applications/seven?operation=true"
                   }
                 ]
               }
