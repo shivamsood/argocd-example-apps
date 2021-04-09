@@ -11,9 +11,51 @@ kind: ConfigMap
 metadata:
   name: argocd-notifications-cm
 data:
-  service.teams: |
-    recipientUrls: 
-      channelName: $channel-teams-url
+  service.webhook.<webhook-name>: |
+    url: https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a
+  template.app-sync-succeeded: |
+    webhook:
+      msteams:
+        method: POST 
+        body: |     
+          {
+            "@type": "MessageCard",
+            "@context": "http://schema.org/extensions",
+            "themeColor": "0076D7",
+            "summary": "{{.app.spec.destination.namespace}}/{{.app.metadata.name}} sync status is {{.app.status.sync.status}}",
+            "sections": [
+              {
+                "activityTitle": "{{.app.spec.destination.namespace}}/{{.app.metadata.name}} sync status is {{.app.status.sync.status}}",
+                "facts": [
+                  {
+                    "name": "Repository",
+                    "value": "{{.app.spec.source.repoURL}}"
+                  },
+                  {
+                    "name": "Synced at",
+                    "value": "{{.app.status.operationState.finishedAt}}"
+                  },
+                  {
+                    "name": "Sync status",
+                    "value": "{{.app.status.sync.status}}"
+                  }
+                ],
+                "markdown": true
+              }
+            ],
+            "potentialAction": [
+              {
+                "@type": "OpenUri",
+                "name": "Details",
+                "targets": [
+                  {
+                    "os": "default",
+                    "uri": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true"
+                  }
+                ]
+              }
+            ]
+          } 
       
 ---
 apiVersion: argoproj.io/v1alpha1
@@ -22,10 +64,7 @@ metadata:
   name: helm-guestbook
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscribe.on-sync-succeeded.teams: channelName
-    notifications.argoproj.io/subscribe.on-sync-running.teams: channelName
-    notifications.argoproj.io/subscribe.on-created.teams: channelName
-    notifications.argoproj.io/subscribe.on-deleted.teams: channelName
+    notifications.argoproj.io/subscribe.on-sync-succeeded.webhook: channelName
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
