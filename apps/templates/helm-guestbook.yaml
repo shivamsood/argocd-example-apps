@@ -73,4 +73,3 @@ spec:
     path: helm-guestbook
     repoURL: {{ .Values.spec.source.repoURL }}
     targetRevision: {{ .Values.spec.source.targetRevision }}
----
