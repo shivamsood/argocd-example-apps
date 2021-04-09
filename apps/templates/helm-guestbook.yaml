@@ -53,7 +53,14 @@ data:
               }
             ]
           } 
-      
+
+  subscriptions: |
+    # subscription for on-sync-status-unknown trigger notifications
+    - recipients:
+      - webhook:testhook
+      triggers:
+      - app-sync-succeeded
+
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -61,7 +68,7 @@ metadata:
   name: helm-guestbook
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscribe.on-sync-succeeded.testhook: ""
+    notifications.argoproj.io/subscribe.app-sync-succeeded.testhook: ""
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
