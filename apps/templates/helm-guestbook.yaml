@@ -52,7 +52,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations: 
-    notifications.argoproj.io/subscribe.on-sync-succeeded.testhook: ""
+    notifications.argoproj.io/subscribe.on-sync-succeeded.webhook: "testhook"
   name: helm-guestbook
   namespace: argocd
   finalizers:
