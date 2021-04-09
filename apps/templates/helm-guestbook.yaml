@@ -22,15 +22,11 @@ data:
             "@type": "MessageCard",
             "@context": "http://schema.org/extensions",
             "themeColor": "0076D7",
-            "summary": "{{.app.spec.destination.namespace}}/{{.app.metadata.name}} sync status is {{.app.status.sync.status}}",
+            "summary": "{{.app.metadata.name}} sync status is {{.app.status.sync.status}}",
             "sections": [
               {
-                "activityTitle": "{{.app.spec.destination.namespace}}/{{.app.metadata.name}} sync status is {{.app.status.sync.status}}",
+                "activityTitle": "{{.app.metadata.name}} sync status is {{.app.status.sync.status}}",
                 "facts": [
-                  {
-                    "name": "Repository",
-                    "value": "{{.app.spec.source.repoURL}}"
-                  },
                   {
                     "name": "Synced at",
                     "value": "{{.app.status.operationState.finishedAt}}"
