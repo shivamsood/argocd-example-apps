@@ -61,7 +61,7 @@ metadata:
   name: helm-guestbook
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscribe.on-sync-succeeded.webhook: testhook
+    notifications.argoproj.io/subscribe.on-sync-succeeded.webhook: ""
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
