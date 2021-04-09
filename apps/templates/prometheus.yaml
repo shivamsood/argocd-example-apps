@@ -66,10 +66,7 @@ metadata:
   name: prometheus
   namespace: argocd
   annotations:
-    notifications.argoproj.io/subscribe.on-sync-succeeded.teams: channelName
-    notifications.argoproj.io/subscribe.on-sync-running.teams: channelName
-    notifications.argoproj.io/subscribe.on-created.teams: channelName
-    notifications.argoproj.io/subscribe.on-deleted.teams: channelName
+    notifications.argoproj.io/subscribe.on-sync-succeeded.teams:channelName
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
