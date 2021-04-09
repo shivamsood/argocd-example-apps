@@ -12,7 +12,7 @@ data:
     email:
       subject: Application one has been successfully synced.
     message: |
-      {{if eq .serviceType "slack"}}:white_check_mark:{{end}} Application two has been successfully synced at three.
+      Application two has been successfully synced at three.
       Sync operation details are available at: four .
 
 ---
