@@ -45,21 +45,14 @@ data:
               }
             ]
           } 
-  trigger.on-sync-succeeded: |
-    - when: app.status.operationState.phase in ['Succeeded']
-      send: [app-sync-succeeded]
-      
-  subscriptions: |
-    # subscription for on-sync-status-unknown trigger notifications
-    - recipients:
-      - webhook:testhook
-      triggers:
-      - on-sync-succeeded
+
 
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.testhook: ""
   name: helm-guestbook
   namespace: argocd
   finalizers:
