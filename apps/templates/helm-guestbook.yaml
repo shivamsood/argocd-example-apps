@@ -10,10 +10,10 @@ data:
     from: shivam.sood@achievers.com
   template.app-sync-succeeded: |
     email:
-      subject: Application {{.app.metadata.name}} has been successfully synced.
+      subject: Application one has been successfully synced.
     message: |
-      {{if eq .serviceType "slack"}}:white_check_mark:{{end}} Application {{.app.metadata.name}} has been successfully synced at {{.app.status.operationState.finishedAt}}.
-      Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .
+      {{if eq .serviceType "slack"}}:white_check_mark:{{end}} Application two has been successfully synced at three.
+      Sync operation details are available at: four .
 
 ---
 apiVersion: argoproj.io/v1alpha1
