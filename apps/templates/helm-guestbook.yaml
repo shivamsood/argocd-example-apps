@@ -22,18 +22,18 @@ data:
             "@type": "MessageCard",
             "@context": "http://schema.org/extensions",
             "themeColor": "0076D7",
-            "summary": "{{$app.metadata.name}} sync status is {{$app.status.sync.status}}",
+            "summary": "one sync status is two",
             "sections": [
               {
-                "activityTitle": "{{$app.metadata.name}} sync status is {{.app.status.sync.status}}",
+                "activityTitle": "three sync status is four",
                 "facts": [
                   {
                     "name": "Synced at",
-                    "value": "{{.app.status.operationState.finishedAt}}"
+                    "value": "5"
                   },
                   {
                     "name": "Sync status",
-                    "value": "{{.app.status.sync.status}}"
+                    "value": "6"
                   }
                 ],
                 "markdown": true
@@ -46,7 +46,7 @@ data:
                 "targets": [
                   {
                     "os": "default",
-                    "uri": "{{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true"
+                    "uri": "{{.context.argocdUrl}}/applications/seven?operation=true"
                   }
                 ]
               }
