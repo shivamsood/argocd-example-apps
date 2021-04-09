@@ -24,6 +24,10 @@ metadata:
     notifications.argoproj.io/subscribe.on-sync-running.teams: channelName
     notifications.argoproj.io/subscribe.on-created.teams: channelName
     notifications.argoproj.io/subscribe.on-deleted.teams: channelName
+    notifications.argoproj.io/subscribe.on-sync-status-unknown.teams: channelName
+    notifications.argoproj.io/subscribe.on-deployed.teams: channelName
+    notifications.argoproj.io/subscribe.on-health-degraded.teams: channelName
+    notifications.argoproj.io/subscribe.on-sync-failed.teams: channelName
   name: helm-guestbook
   namespace: argocd
   finalizers:
