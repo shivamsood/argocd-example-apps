@@ -11,9 +11,8 @@ kind: ConfigMap
 metadata:
   name: argocd-notifications-cm1
 data:
-  service.webhook.testhook: >
-    url:
-    https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a
+  service.webhook.testhook: |
+    url: https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a
   template.app-sync-succeeded: |
     webhook:
       testhook:
