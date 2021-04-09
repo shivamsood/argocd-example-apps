@@ -4,55 +4,23 @@ kind: ConfigMap
 metadata:
   name: argocd-notifications-cm
 data:
-  service.webhook.testhook: |
-    url: https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a
+  service.email.test: |
+    host: tr2-mailgw03.prod.achievers.com
+    port: 25
+    from: shivam.sood@achievers.com
   template.app-sync-succeeded: |
-    webhook:
-      testhook:
-        method: POST 
-        body: |     
-          {
-            "@type": "MessageCard",
-            "@context": "http://schema.org/extensions",
-            "themeColor": "0076D7",
-            "summary": "one sync status is two",
-            "sections": [
-              {
-                "activityTitle": "three sync status is four",
-                "facts": [
-                  {
-                    "name": "Synced at",
-                    "value": "5"
-                  },
-                  {
-                    "name": "Sync status",
-                    "value": "6"
-                  }
-                ],
-                "markdown": true
-              }
-            ],
-            "potentialAction": [
-              {
-                "@type": "OpenUri",
-                "name": "Details",
-                "targets": [
-                  {
-                    "os": "default",
-                    "uri": "eight/applications/seven?operation=true"
-                  }
-                ]
-              }
-            ]
-          } 
-
+    email:
+      subject: Application {{.app.metadata.name}} has been successfully synced.
+    message: |
+      {{if eq .serviceType "slack"}}:white_check_mark:{{end}} Application {{.app.metadata.name}} has been successfully synced at {{.app.status.operationState.finishedAt}}.
+      Sync operation details are available at: {{.context.argocdUrl}}/applications/{{.app.metadata.name}}?operation=true .
 
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   annotations: 
-    notifications.argoproj.io/subscribe.on-sync-succeeded.webhook: "testhook"
+    notifications.argoproj.io/subscribe.on-sync-succeeded.test: "shivam.sood@achievers.com"
   name: helm-guestbook
   namespace: argocd
   finalizers:
