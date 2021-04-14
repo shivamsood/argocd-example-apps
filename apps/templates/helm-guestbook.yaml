@@ -11,7 +11,7 @@ kind: ConfigMap
 metadata:
   name: argocd-notifications-cm
 data:
-  service.teams: |
+  service.feams: |
     recipientUrls: 
       channelName: $channel-teams-url
 
