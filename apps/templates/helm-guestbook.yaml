@@ -1,36 +1,7 @@
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: argocd-notifications-secret
-stringData:
-  channel-teams-url: https://achieversllc.webhook.office.com/webhookb2/e1c36f55-b4a6-4fcc-b63d-9c6d4d4fc1cb@8bd0082d-d958-423a-821f-dd0f22a1b519/IncomingWebhook/4cc501d15f364e2dace7f8972c2f89eb/3629f90a-a966-4ac3-a8ec-6c8b9dbc8d6a
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: argocd-notifications-cm
-data:
-  service.teams: |
-    recipientUrls: 
-      channelName: $channel-teams-url
-  config.yaml: |
-    context:
-      argocdUrl: https://argocd.local:80
-
----
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  annotations:
-    notifications.argoproj.io/subscribe.on-sync-succeeded.teams: channelName
-    notifications.argoproj.io/subscribe.on-sync-running.teams: channelName
-    notifications.argoproj.io/subscribe.on-created.teams: channelName
-    notifications.argoproj.io/subscribe.on-deleted.teams: channelName
-    notifications.argoproj.io/subscribe.on-sync-status-unknown.teams: channelName
-    notifications.argoproj.io/subscribe.on-deployed.teams: channelName
-    notifications.argoproj.io/subscribe.on-health-degraded.teams: channelName
-    notifications.argoproj.io/subscribe.on-sync-failed.teams: channelName
   name: helm-guestbook
   namespace: argocd
   finalizers:
