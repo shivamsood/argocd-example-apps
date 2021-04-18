@@ -4,6 +4,15 @@ kind: Application
 metadata:
   name: helm-guestbook
   namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.teams: channelNameB
+    notifications.argoproj.io/subscribe.on-sync-running.teams: channelNameB
+    notifications.argoproj.io/subscribe.on-created.teams: channelNameB
+    notifications.argoproj.io/subscribe.on-deleted.teams: channelNameB
+    notifications.argoproj.io/subscribe.on-sync-status-unknown.teams: channelNameB
+    notifications.argoproj.io/subscribe.on-deployed.teams: channelNameB
+    notifications.argoproj.io/subscribe.on-health-degraded.teams: channelNameB
+    notifications.argoproj.io/subscribe.on-sync-failed.teams: channelNameB
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
