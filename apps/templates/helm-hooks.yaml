@@ -3,6 +3,15 @@ kind: Application
 metadata:
   name: helm-hooks
   namespace: argocd
+  annotations:
+    notifications.argoproj.io/subscribe.on-sync-succeeded.teams: channelNameA
+    notifications.argoproj.io/subscribe.on-sync-running.teams: channelNameA
+    notifications.argoproj.io/subscribe.on-created.teams: channelNameA
+    notifications.argoproj.io/subscribe.on-deleted.teams: channelNameA
+    notifications.argoproj.io/subscribe.on-sync-status-unknown.teams: channelNameA
+    notifications.argoproj.io/subscribe.on-deployed.teams: channelNameA
+    notifications.argoproj.io/subscribe.on-health-degraded.teams: channelNameA
+    notifications.argoproj.io/subscribe.on-sync-failed.teams: channelNameA
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
