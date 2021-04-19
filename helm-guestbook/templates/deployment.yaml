@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: Deployment
+kin: Deployment
 metadata:
   name: {{ template "helm-guestbook.fullname" . }}
   labels:
