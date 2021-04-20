@@ -16,6 +16,8 @@ metadata:
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
+  syncPolicy:
+    automated: {}
   destination:
     namespace: helm-guestbook
     server: {{ .Values.spec.destination.server }}
