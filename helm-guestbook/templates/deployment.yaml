@@ -9,7 +9,7 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicas: {{ .Values.replicaCount }}
-  progressDeadlineSeconds: 120
+  progressDeadlineSeconds: 60
   revisionHistoryLimit: 3
   selector:
     matchLabels:
